@@ -1,0 +1,716 @@
+{
+  "timestamp": "2025-11-15T22:23:09.553707",
+  "data": [
+    {
+      "Crude Oil Price": "70.2000"
+    },
+    {
+      "Crude Oil Price": "70.5500"
+    },
+    {
+      "Crude Oil Price": "73.1800"
+    },
+    {
+      "Crude Oil Price": "73.5000"
+    },
+    {
+      "Crude Oil Price": "65.9000"
+    },
+    {
+      "Crude Oil Price": "69.0700"
+    },
+    {
+      "Crude Oil Price": "74.4400"
+    },
+    {
+      "Crude Oil Price": "77.0800"
+    },
+    {
+      "Crude Oil Price": "80.7600"
+    },
+    {
+      "Crude Oil Price": "74.7200"
+    },
+    {
+      "Crude Oil Price": "75.4400"
+    },
+    {
+      "Crude Oil Price": "76.6900"
+    },
+    {
+      "Crude Oil Price": "76.0500"
+    },
+    {
+      "Crude Oil Price": "82.8800"
+    },
+    {
+      "Crude Oil Price": "87.2800"
+    },
+    {
+      "Crude Oil Price": "83.6400"
+    },
+    {
+      "Crude Oil Price": "84.0100"
+    },
+    {
+      "Crude Oil Price": "93.1200"
+    },
+    {
+      "Crude Oil Price": "88.8000"
+    },
+    {
+      "Crude Oil Price": "86.0800"
+    },
+    {
+      "Crude Oil Price": "82.1800"
+    },
+    {
+      "Crude Oil Price": "79.1200"
+    },
+    {
+      "Crude Oil Price": "85.7600"
+    },
+    {
+      "Crude Oil Price": "94.9000"
+    },
+    {
+      "Crude Oil Price": "98.1600"
+    },
+    {
+      "Crude Oil Price": "89.3000"
+    },
+    {
+      "Crude Oil Price": "82.2700"
+    },
+    {
+      "Crude Oil Price": "76.9700"
+    },
+    {
+      "Crude Oil Price": "76.9100"
+    },
+    {
+      "Crude Oil Price": "86.6000"
+    },
+    {
+      "Crude Oil Price": "81.1000"
+    },
+    {
+      "Crude Oil Price": "86.0400"
+    },
+    {
+      "Crude Oil Price": "84.7800"
+    },
+    {
+      "Crude Oil Price": "82.5000"
+    },
+    {
+      "Crude Oil Price": "93.3600"
+    },
+    {
+      "Crude Oil Price": "96.5700"
+    },
+    {
+      "Crude Oil Price": "93.2500"
+    },
+    {
+      "Crude Oil Price": "106.3400"
+    },
+    {
+      "Crude Oil Price": "120.5400"
+    },
+    {
+      "Crude Oil Price": "130.1000"
+    },
+    {
+      "Crude Oil Price": "116.7200"
+    },
+    {
+      "Crude Oil Price": "106.5100"
+    },
+    {
+      "Crude Oil Price": "121.2300"
+    },
+    {
+      "Crude Oil Price": "99.6400"
+    },
+    {
+      "Crude Oil Price": "88.7100"
+    },
+    {
+      "Crude Oil Price": "65.4100"
+    },
+    {
+      "Crude Oil Price": "82.1600"
+    },
+    {
+      "Crude Oil Price": "84.1100"
+    },
+    {
+      "Crude Oil Price": "74.5500"
+    },
+    {
+      "Crude Oil Price": "70.7200"
+    },
+    {
+      "Crude Oil Price": "75.9300"
+    },
+    {
+      "Crude Oil Price": "73.4600"
+    },
+    {
+      "Crude Oil Price": "67.8300"
+    },
+    {
+      "Crude Oil Price": "64.3000"
+    },
+    {
+      "Crude Oil Price": "65.6200"
+    },
+    {
+      "Crude Oil Price": "62.4800"
+    },
+    {
+      "Crude Oil Price": "54.8700"
+    },
+    {
+      "Crude Oil Price": "50.3300"
+    },
+    {
+      "Crude Oil Price": "42.7000"
+    },
+    {
+      "Crude Oil Price": "39.7400"
+    },
+    {
+      "Crude Oil Price": "40.8500"
+    },
+    {
+      "Crude Oil Price": "45.0600"
+    },
+    {
+      "Crude Oil Price": "44.1000"
+    },
+    {
+      "Crude Oil Price": "40.3000"
+    },
+    {
+      "Crude Oil Price": "27.9000"
+    },
+    {
+      "Crude Oil Price": "14.2800"
+    },
+    {
+      "Crude Oil Price": "32.2900"
+    },
+    {
+      "Crude Oil Price": "58.4500"
+    },
+    {
+      "Crude Oil Price": "66.6800"
+    },
+    {
+      "Crude Oil Price": "68.5600"
+    },
+    {
+      "Crude Oil Price": "63.5600"
+    },
+    {
+      "Crude Oil Price": "59.1000"
+    },
+    {
+      "Crude Oil Price": "65.2700"
+    },
+    {
+      "Crude Oil Price": "61.0500"
+    },
+    {
+      "Crude Oil Price": "66.2400"
+    },
+    {
+      "Crude Oil Price": "66.7400"
+    },
+    {
+      "Crude Oil Price": "73.6500"
+    },
+    {
+      "Crude Oil Price": "73.0800"
+    },
+    {
+      "Crude Oil Price": "67.6700"
+    },
+    {
+      "Crude Oil Price": "64.8900"
+    },
+    {
+      "Crude Oil Price": "60.3900"
+    },
+    {
+      "Crude Oil Price": "62.0000"
+    },
+    {
+      "Crude Oil Price": "66.5900"
+    },
+    {
+      "Crude Oil Price": "79.1800"
+    },
+    {
+      "Crude Oil Price": "79.5900"
+    },
+    {
+      "Crude Oil Price": "73.3500"
+    },
+    {
+      "Crude Oil Price": "74.7200"
+    },
+    {
+      "Crude Oil Price": "75.3800"
+    },
+    {
+      "Crude Oil Price": "77.6400"
+    },
+    {
+      "Crude Oil Price": "72.3700"
+    },
+    {
+      "Crude Oil Price": "74.7200"
+    },
+    {
+      "Crude Oil Price": "66.6700"
+    },
+    {
+      "Crude Oil Price": "69.6800"
+    },
+    {
+      "Crude Oil Price": "65.1100"
+    },
+    {
+      "Crude Oil Price": "63.5600"
+    },
+    {
+      "Crude Oil Price": "58.4600"
+    },
+    {
+      "Crude Oil Price": "56.7900"
+    },
+    {
+      "Crude Oil Price": "51.6400"
+    },
+    {
+      "Crude Oil Price": "49.0100"
+    },
+    {
+      "Crude Oil Price": "47.4200"
+    },
+    {
+      "Crude Oil Price": "50.5700"
+    },
+    {
+      "Crude Oil Price": "52.9400"
+    },
+    {
+      "Crude Oil Price": "52.1300"
+    },
+    {
+      "Crude Oil Price": "46.3900"
+    },
+    {
+      "Crude Oil Price": "55.0100"
+    },
+    {
+      "Crude Oil Price": "53.4800"
+    },
+    {
+      "Crude Oil Price": "45.2500"
+    },
+    {
+      "Crude Oil Price": "50.9400"
+    },
+    {
+      "Crude Oil Price": "47.4300"
+    },
+    {
+      "Crude Oil Price": "46.1500"
+    },
+    {
+      "Crude Oil Price": "45.2500"
+    },
+    {
+      "Crude Oil Price": "48.4600"
+    },
+    {
+      "Crude Oil Price": "47.0100"
+    },
+    {
+      "Crude Oil Price": "41.5900"
+    },
+    {
+      "Crude Oil Price": "37.7600"
+    },
+    {
+      "Crude Oil Price": "31.7000"
+    },
+    {
+      "Crude Oil Price": "30.6600"
+    },
+    {
+      "Crude Oil Price": "37.8000"
+    },
+    {
+      "Crude Oil Price": "44.8200"
+    },
+    {
+      "Crude Oil Price": "48.8600"
+    },
+    {
+      "Crude Oil Price": "48.0800"
+    },
+    {
+      "Crude Oil Price": "47.0900"
+    },
+    {
+      "Crude Oil Price": "57.0100"
+    },
+    {
+      "Crude Oil Price": "62.0600"
+    },
+    {
+      "Crude Oil Price": "65.0800"
+    },
+    {
+      "Crude Oil Price": "57.4500"
+    },
+    {
+      "Crude Oil Price": "56.6900"
+    },
+    {
+      "Crude Oil Price": "58.0900"
+    },
+    {
+      "Crude Oil Price": "48.8100"
+    },
+    {
+      "Crude Oil Price": "63.2800"
+    },
+    {
+      "Crude Oil Price": "80.4200"
+    },
+    {
+      "Crude Oil Price": "83.5000"
+    },
+    {
+      "Crude Oil Price": "98.2700"
+    },
+    {
+      "Crude Oil Price": "102.3300"
+    },
+    {
+      "Crude Oil Price": "109.6300"
+    },
+    {
+      "Crude Oil Price": "114.6000"
+    },
+    {
+      "Crude Oil Price": "111.9000"
+    },
+    {
+      "Crude Oil Price": "110.4100"
+    },
+    {
+      "Crude Oil Price": "109.4700"
+    },
+    {
+      "Crude Oil Price": "110.8300"
+    },
+    {
+      "Crude Oil Price": "110.1900"
+    },
+    {
+      "Crude Oil Price": "112.7500"
+    },
+    {
+      "Crude Oil Price": "111.1400"
+    },
+    {
+      "Crude Oil Price": "112.2900"
+    },
+    {
+      "Crude Oil Price": "113.5900"
+    },
+    {
+      "Crude Oil Price": "107.8400"
+    },
+    {
+      "Crude Oil Price": "109.7800"
+    },
+    {
+      "Crude Oil Price": "106.0600"
+    },
+    {
+      "Crude Oil Price": "106.0000"
+    },
+    {
+      "Crude Oil Price": "105.5500"
+    },
+    {
+      "Crude Oil Price": "112.7900"
+    },
+    {
+      "Crude Oil Price": "118.8100"
+    },
+    {
+      "Crude Oil Price": "115.2400"
+    },
+    {
+      "Crude Oil Price": "114.4900"
+    },
+    {
+      "Crude Oil Price": "111.0500"
+    },
+    {
+      "Crude Oil Price": "108.9200"
+    },
+    {
+      "Crude Oil Price": "114.3600"
+    },
+    {
+      "Crude Oil Price": "113.7600"
+    },
+    {
+      "Crude Oil Price": "104.6200"
+    },
+    {
+      "Crude Oil Price": "98.0600"
+    },
+    {
+      "Crude Oil Price": "113.0800"
+    },
+    {
+      "Crude Oil Price": "122.6200"
+    },
+    {
+      "Crude Oil Price": "128.0000"
+    },
+    {
+      "Crude Oil Price": "121.8700"
+    },
+    {
+      "Crude Oil Price": "113.8100"
+    },
+    {
+      "Crude Oil Price": "111.4600"
+    },
+    {
+      "Crude Oil Price": "113.9200"
+    },
+    {
+      "Crude Oil Price": "113.1200"
+    },
+    {
+      "Crude Oil Price": "115.7300"
+    },
+    {
+      "Crude Oil Price": "111.9900"
+    },
+    {
+      "Crude Oil Price": "117.8600"
+    },
+    {
+      "Crude Oil Price": "117.0300"
+    },
+    {
+      "Crude Oil Price": "118.4300"
+    },
+    {
+      "Crude Oil Price": "124.4900"
+    },
+    {
+      "Crude Oil Price": "116.5600"
+    },
+    {
+      "Crude Oil Price": "106.5700"
+    },
+    {
+      "Crude Oil Price": "97.9600"
+    },
+    {
+      "Crude Oil Price": "92.7900"
+    },
+    {
+      "Crude Oil Price": "86.7100"
+    },
+    {
+      "Crude Oil Price": "84.4200"
+    },
+    {
+      "Crude Oil Price": "79.4500"
+    },
+    {
+      "Crude Oil Price": "78.6700"
+    },
+    {
+      "Crude Oil Price": "77.1800"
+    },
+    {
+      "Crude Oil Price": "75.7900"
+    },
+    {
+      "Crude Oil Price": "77.5400"
+    },
+    {
+      "Crude Oil Price": "85.2900"
+    },
+    {
+      "Crude Oil Price": "80.2700"
+    },
+    {
+      "Crude Oil Price": "75.0600"
+    },
+    {
+      "Crude Oil Price": "77.6200"
+    },
+    {
+      "Crude Oil Price": "75.1100"
+    },
+    {
+      "Crude Oil Price": "78.1100"
+    },
+    {
+      "Crude Oil Price": "78.2500"
+    },
+    {
+      "Crude Oil Price": "70.2200"
+    },
+    {
+      "Crude Oil Price": "74.0000"
+    },
+    {
+      "Crude Oil Price": "66.5200"
+    },
+    {
+      "Crude Oil Price": "72.2400"
+    },
+    {
+      "Crude Oil Price": "60.0200"
+    },
+    {
+      "Crude Oil Price": "51.1600"
+    },
+    {
+      "Crude Oil Price": "49.7000"
+    },
+    {
+      "Crude Oil Price": "46.5200"
+    },
+    {
+      "Crude Oil Price": "44.9500"
+    },
+    {
+      "Crude Oil Price": "45.8700"
+    },
+    {
+      "Crude Oil Price": "55.5100"
+    },
+    {
+      "Crude Oil Price": "75.3100"
+    },
+    {
+      "Crude Oil Price": "103.8200"
+    },
+    {
+      "Crude Oil Price": "115.8400"
+    },
+    {
+      "Crude Oil Price": "137.7400"
+    },
+    {
+      "Crude Oil Price": "138.7400"
+    },
+    {
+      "Crude Oil Price": "126.5700"
+    },
+    {
+      "Crude Oil Price": "116.7300"
+    },
+    {
+      "Crude Oil Price": "103.7300"
+    },
+    {
+      "Crude Oil Price": "98.1500"
+    },
+    {
+      "Crude Oil Price": "94.2600"
+    },
+    {
+      "Crude Oil Price": "93.4000"
+    },
+    {
+      "Crude Oil Price": "95.0500"
+    },
+    {
+      "Crude Oil Price": "83.8600"
+    },
+    {
+      "Crude Oil Price": "79.7600"
+    },
+    {
+      "Crude Oil Price": "73.7600"
+    },
+    {
+      "Crude Oil Price": "79.7600"
+    },
+    {
+      "Crude Oil Price": "73.2800"
+    },
+    {
+      "Crude Oil Price": "70.4000"
+    },
+    {
+      "Crude Oil Price": "70.4600"
+    },
+    {
+      "Crude Oil Price": "64.2800"
+    },
+    {
+      "Crude Oil Price": "59.9700"
+    },
+    {
+      "Crude Oil Price": "55.5700"
+    },
+    {
+      "Crude Oil Price": "64.7000"
+    },
+    {
+      "Crude Oil Price": "59.8100"
+    },
+    {
+      "Crude Oil Price": "59.4900"
+    },
+    {
+      "Crude Oil Price": "62.9700"
+    },
+    {
+      "Crude Oil Price": "75.1500"
+    },
+    {
+      "Crude Oil Price": "75.1300"
+    },
+    {
+      "Crude Oil Price": "69.3200"
+    },
+    {
+      "Crude Oil Price": "71.1800"
+    },
+    {
+      "Crude Oil Price": "72.0900"
+    },
+    {
+      "Crude Oil Price": "65.0000"
+    },
+    {
+      "Crude Oil Price": "61.3300"
+    },
+    {
+      "Crude Oil Price": "63.8500"
+    }
+  ]
+}

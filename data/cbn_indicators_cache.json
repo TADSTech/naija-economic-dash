@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-11-15T22:22:36.988102",
+  "data": [
+    {
+      "Economic Indicators": "Money Supply (M3)",
+      "Value": "=N=117,783,532.25 million",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Credit to Other Sectors",
+      "Value": "=N=72,527,121.86 million",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Year-on-Year All Item Inflation Rate",
+      "Value": "18.02%",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Average Inter-bank Call Rate",
+      "Value": " 24.50 %",
+      "As at:": "16/10/2025"
+    },
+    {
+      "Economic Indicators": "Monetary Policy Rate",
+      "Value": "27.00%",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Treasury Bill Rate 91-Day Tenor",
+      "Value": "15.3%",
+      "As at:": "05/11/2025"
+    },
+    {
+      "Economic Indicators": "3-Month Tenor Deposit Rate of Banks",
+      "Value": "12.29%",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Monthly Average Prime Lending Rate",
+      "Value": "11.90%",
+      "As at:": "September 2025"
+    },
+    {
+      "Economic Indicators": "Spot Price of Nigeria's Reference Crude Oil",
+      "Value": "US $70.20",
+      "As at:": "September 2025"
+    }
+  ]
+}

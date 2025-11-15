@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-11-15T22:22:38.026161",
+  "data": [
+    {
+      "Date": "2025-10-22",
+      "NFEM Rate": "1,464.23",
+      "Highest Rate": "1,466.88",
+      "Lowest Rate": "1,452.66",
+      "Closing Rate": "1,462.75",
+      "Simple Average Rate": "1,464.37"
+    },
+    {
+      "Date": "2025-10-21",
+      "NFEM Rate": "1,461.56",
+      "Highest Rate": "1,464.65",
+      "Lowest Rate": "1,449.95",
+      "Closing Rate": "1,459.67",
+      "Simple Average Rate": "1,461.70"
+    },
+    {
+      "Date": "2025-10-20",
+      "NFEM Rate": "1,463.70",
+      "Highest Rate": "1,466.41",
+      "Lowest Rate": "1,451.89",
+      "Closing Rate": "1,462.48",
+      "Simple Average Rate": "1,463.84"
+    },
+    {
+      "Date": "2025-10-19",
+      "NFEM Rate": "1,465.03",
+      "Highest Rate": "1,467.77",
+      "Lowest Rate": "1,453.33",
+      "Closing Rate": "1,463.55",
+      "Simple Average Rate": "1,465.17"
+    },
+    {
+      "Date": "2025-10-18",
+      "NFEM Rate": "1,463.75",
+      "Highest Rate": "1,466.74",
+      "Lowest Rate": "1,452.17",
+      "Closing Rate": "1,461.99",
+      "Simple Average Rate": "1,463.88"
+    },
+    {
+      "Date": "2025-10-17",
+      "NFEM Rate": "1,461.62",
+      "Highest Rate": "1,465.03",
+      "Lowest Rate": "1,449.27",
+      "Closing Rate": "1,460.29",
+      "Simple Average Rate": "1,461.76"
+    },
+    {
+      "Date": "2025-10-16",
+      "NFEM Rate": "1,461.94",
+      "Highest Rate": "1,464.84",
+      "Lowest Rate": "1,450.30",
+      "Closing Rate": "1,460.42",
+      "Simple Average Rate": "1,462.08"
+    },
+    {
+      "Date": "2025-10-15",
+      "NFEM Rate": "1,463.31",
+      "Highest Rate": "1,466.43",
+      "Lowest Rate": "1,451.40",
+      "Closing Rate": "1,462.19",
+      "Simple Average Rate": "1,463.44"
+    },
+    {
+      "Date": "2025-10-14",
+      "NFEM Rate": "1,462.90",
+      "Highest Rate": "1,465.60",
+      "Lowest Rate": "1,450.72",
+      "Closing Rate": "1,461.26",
+      "Simple Average Rate": "1,463.04"
+    },
+    {
+      "Date": "2025-10-13",
+      "NFEM Rate": "1,462.68",
+      "Highest Rate": "1,465.33",
+      "Lowest Rate": "1,450.88",
+      "Closing Rate": "1,461.70",
+      "Simple Average Rate": "1,462.82"
+    }
+  ]
+}
