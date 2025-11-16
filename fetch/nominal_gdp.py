@@ -6,7 +6,7 @@ import os
 import json
 from datetime import datetime, timedelta
 
-CACHE_DURATION_HOURS = 24  # Cache data for 24 hours
+CACHE_DURATION_HOURS = 24
 
 def load_cached_data(cache_file):
     """Load data from cache if it exists and is not expired."""

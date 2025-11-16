@@ -7,26 +7,22 @@ import dash_bootstrap_components as dbc
 from datetime import datetime
 import re
 
-# --- Fetch Data ---
 from fetch.cbn_indicators import fetch_macro_indicators
 from fetch.nfem_rates import fetch_nfem_rates
 from fetch.exchange_rates import fetch_exchange_rates
 from fetch.crude_oil import fetch_crude_oil_prices
 from fetch.financial_data import fetch_financial_data
 from fetch.nominal_gdp import fetch_nominal_gdp
-from fetch.real_gdp import fetch_real_gdp
 from fetch.inflation import fetch_inflation_rates
 from fetch.money_credit import fetch_money_credit_stats
 
-# Utility function to convert formatted strings to numeric values
 def to_numeric(value):
-    """Convert formatted string numbers to float"""
+    """Convert formatted string numbers (with commas) to float for calculations"""
     if pd.isna(value):
         return 0
     if isinstance(value, (int, float)):
         return float(value)
     if isinstance(value, str):
-        # Remove commas and convert to float
         cleaned = value.replace(',', '').strip()
         try:
             return float(cleaned)
@@ -34,35 +30,30 @@ def to_numeric(value):
             return 0
     return 0
 
-# Fetch all data
 df_macro = fetch_macro_indicators()
 df_nfem = fetch_nfem_rates()
 df_exchange = fetch_exchange_rates()
 df_crude_oil = fetch_crude_oil_prices()
 df_financial = fetch_financial_data()
 df_gdp = fetch_nominal_gdp()
-df_real_gdp = fetch_real_gdp()
 df_inflation = fetch_inflation_rates()
 df_money_credit = fetch_money_credit_stats()
 
-# Convert numeric columns in money_credit data for proper graphing
+# Convert string numbers to numeric for graphing
 if not df_money_credit.empty:
     for col in df_money_credit.columns:
         if col not in ['period', 'id', 'tyear', 'tmonth']:
             df_money_credit[col] = df_money_credit[col].apply(to_numeric)
 
-# Convert numeric columns in inflation data for proper graphing
 if not df_inflation.empty:
     for col in df_inflation.columns:
         if col not in ['period', 'id', 'tyear', 'tmonth']:
             df_inflation[col] = df_inflation[col].apply(to_numeric)
 
-# Add index to financial data if Date column is missing
 if not df_financial.empty and 'Date' not in df_financial.columns:
     df_financial['Record'] = range(1, len(df_financial) + 1)
 
-# --- Plotly Template ---
-# Define the custom green theme template
+# Custom Plotly theme - green color scheme
 custom_template = go.layout.Template(
     layout=go.Layout(
         paper_bgcolor='#ffffff',
@@ -90,7 +81,6 @@ custom_template = go.layout.Template(
     )
 )
 
-# --- Initialize the Dash App ---
 app = dash.Dash(
     __name__, 
     external_stylesheets=[
@@ -104,7 +94,7 @@ app = dash.Dash(
 )
 app.title = "Naija Economic Dashboard"
 
-# Custom CSS for professional styling
+# Inline CSS for styling
 app.index_string = '''
 <!DOCTYPE html>
 <html>
@@ -238,7 +228,6 @@ app.index_string = '''
 </html>
 '''
 
-# --- Reusable Components ---
 def create_kpi_card(title, value, date):
     return dbc.Card(
         dbc.CardBody([
@@ -291,32 +280,25 @@ def create_table_card(table_id, title, columns, data, page_size=10):
         ]
     )
 
-# --- Prepare KPI Data ---
+# Prepare KPI data for header cards
 try:
-    # Use actual available indicators
     crude_oil = df_macro.loc[df_macro['Economic Indicators'].str.contains('Crude Oil', case=False, na=False), ['Value', 'As at:']].iloc[0]
     inflation_rate = df_macro.loc[df_macro['Economic Indicators'].str.contains('Inflation', case=False, na=False), ['Value', 'As at:']].iloc[0]
     mpr_rate = df_macro.loc[df_macro['Economic Indicators'].str.contains('Monetary Policy', case=False, na=False), ['Value', 'As at:']].iloc[0]
     money_supply = df_macro.loc[df_macro['Economic Indicators'].str.contains('Money Supply', case=False, na=False), ['Value', 'As at:']].iloc[0]
 except (IndexError, KeyError):
-    # Fallback in case data isn't as expected
     crude_oil = pd.Series({'Value': 'N/A', 'As at:': 'N/A'})
     inflation_rate = pd.Series({'Value': 'N/A', 'As at:': 'N/A'})
     mpr_rate = pd.Series({'Value': 'N/A', 'As at:': 'N/A'})
     money_supply = pd.Series({'Value': 'N/A', 'As at:': 'N/A'})
 
-
-# --- App Layout ---
 app.layout = html.Div(className="app-container", children=[
-    # Header
     html.Div(className="app-header", children=[
         html.H1('Naija Economic Dashboard', style={'margin': '0', 'fontSize': '2.5em', 'fontWeight': '700'}),
         html.P('Key Nigerian Economic Indicators (Data from CBN)', style={'fontSize': '1.1em', 'opacity': '0.9'})
     ]),
 
-    # Main Content
     dbc.Container(fluid=True, className="app-content", children=[
-        # KPI Row
         html.H2("Key Indicators", className="section-title"),
         dbc.Row(className="mb-4", children=[
             dbc.Col(lg=3, md=6, sm=12, className="mb-4", children=[
@@ -333,7 +315,6 @@ app.layout = html.Div(className="app-container", children=[
             ]),
         ]),
 
-        # Macro Indicators Table
         html.H2("Live Macro-Economic Indicators", className="section-title"),
         dbc.Row(className="mb-4", children=[
             dbc.Col(children=[
@@ -341,90 +322,76 @@ app.layout = html.Div(className="app-container", children=[
             ])
         ]),
 
-        # --- Charts Section ---
         html.H2("Data Trends", className="section-title"),
         
-        # Row 1: NFEM & Exchange Rates
         dbc.Row(className="mb-4", children=[
             dbc.Col(md=6, className="mb-4", children=[
                 create_graph_card('nfem-graph', "NFEM Rate Trends")
             ]),
             dbc.Col(md=6, className="mb-4", children=[
-                create_graph_card(
-                    'exchange-graph', 
-                    "Exchange Rate Trends",
-                    dropdown=dcc.Dropdown(
-                        id='currency-dropdown',
-                        options=[{'label': c, 'value': c} for c in df_exchange['Currency'].unique()] if not df_exchange.empty else [],
-                        value=df_exchange['Currency'].unique()[0] if not df_exchange.empty else None,
-                        clearable=False,
-                        className="mb-3"
-                    ) if not df_exchange.empty else None
+                dbc.Card(
+                    dbc.CardBody([
+                        html.H5("Exchange Rate Trends (All Currencies vs Naira)", className="card-title", style={'color': '#2E8B57', 'fontWeight': '600'}),
+                        dcc.Graph(id='exchange-graph', config={'displaylogo': False, 'responsive': True}, style={'height': '400px'})
+                    ]),
+                    className="shadow-sm mb-4 h-100",
+                    id="exchange-graph-card"
                 )
             ]),
         ]),
 
-        # Row 2: Crude Oil & Financial Ops
         dbc.Row(className="mb-4", children=[
-            dbc.Col(md=6, className="mb-4", children=[
+            dbc.Col(md=12, className="mb-4", children=[
                 create_graph_card('crude-oil-graph', "Crude Oil Price Trends")
             ]),
-            dbc.Col(md=6, className="mb-4", children=[
-                create_graph_card(
-                    'financial-graph', 
-                    "Financial Operations Trends (in ₦'m)",
-                    dropdown=dcc.Dropdown(
-                        id='financial-metric-dropdown',
-                        options=[{'label': c, 'value': c} for c in df_financial.columns if c not in ['Date']],
-                        value=df_financial.columns[1] if len(df_financial.columns) > 1 else None,
-                        clearable=False,
-                        className="mb-3"
-                    ) if not df_financial.empty else None
-                )
-            ]),
         ]),
 
-        # Row 3: GDP
         dbc.Row(className="mb-4", children=[
             dbc.Col(md=6, className="mb-4", children=[
                 create_graph_card('gdp-graph', "Nominal GDP by Sector (in ₦'b)")
             ]),
             dbc.Col(md=6, className="mb-4", children=[
-                create_graph_card('real-gdp-graph', "Real GDP by Sector (in ₦'b)")
+                create_graph_card('gdp-pie-chart', "Nominal GDP Composition")
             ]),
         ]),
 
-        # Row 4: Inflation & Money
         dbc.Row(className="mb-4", children=[
             dbc.Col(md=6, className="mb-4", children=[
-                create_graph_card(
-                    'detailed-inflation-graph', 
-                    "Inflation Rate Trends (%)",
-                    dropdown=dcc.Dropdown(
-                        id='inflation-metric-dropdown',
-                        options=[{'label': c, 'value': c} for c in df_inflation.columns if c != 'period'],
-                        value=df_inflation.columns[1] if len(df_inflation.columns) > 1 else None,
-                        clearable=False,
-                        className="mb-3"
-                    ) if not df_inflation.empty else None
+                dbc.Card(
+                    dbc.CardBody([
+                        html.H5("Inflation Rate Trends (%)", className="card-title", style={'color': '#2E8B57', 'fontWeight': '600'}),
+                        dcc.Dropdown(
+                            id='inflation-metric-dropdown',
+                            options=[{'label': c, 'value': c} for c in df_inflation.columns if c != 'period'] if not df_inflation.empty else [],
+                            value=df_inflation.columns[1] if not df_inflation.empty and len(df_inflation.columns) > 1 else None,
+                            clearable=False,
+                            className="mb-3"
+                        ),
+                        dcc.Graph(id='detailed-inflation-graph', config={'displaylogo': False, 'responsive': True}, style={'height': '400px'})
+                    ]),
+                    className="shadow-sm mb-4 h-100",
+                    id="detailed-inflation-graph-card"
                 )
             ]),
             dbc.Col(md=6, className="mb-4", children=[
-                create_graph_card(
-                    'money-credit-graph', 
-                    "Money and Credit Trends (in ₦'m)",
-                    dropdown=dcc.Dropdown(
-                        id='money-metric-dropdown',
-                        options=[{'label': c, 'value': c} for c in df_money_credit.columns if c != 'period'],
-                        value=df_money_credit.columns[1] if len(df_money_credit.columns) > 1 else None,
-                        clearable=False,
-                        className="mb-3"
-                    ) if not df_money_credit.empty else None
+                dbc.Card(
+                    dbc.CardBody([
+                        html.H5("Money and Credit Trends (in ₦'m)", className="card-title", style={'color': '#2E8B57', 'fontWeight': '600'}),
+                        dcc.Dropdown(
+                            id='money-metric-dropdown',
+                            options=[{'label': c, 'value': c} for c in df_money_credit.columns if c != 'period'] if not df_money_credit.empty else [],
+                            value=df_money_credit.columns[1] if not df_money_credit.empty and len(df_money_credit.columns) > 1 else None,
+                            clearable=False,
+                            className="mb-3"
+                        ),
+                        dcc.Graph(id='money-credit-graph', config={'displaylogo': False, 'responsive': True}, style={'height': '400px'})
+                    ]),
+                    className="shadow-sm mb-4 h-100",
+                    id="money-credit-graph-card"
                 )
             ]),
         ]),
 
-        # --- Data Tables Section ---
         html.H2("Detailed Data Tables", className="section-title"),
 
         dbc.Row(className="mb-4", children=[
@@ -441,17 +408,6 @@ app.layout = html.Div(className="app-container", children=[
             ]),
             dbc.Col(md=6, className="mb-4", children=[
                 create_table_card('gdp-table', 'Nominal GDP', df_gdp.columns, df_gdp.to_dict('records'), page_size=5)
-            ]),
-        ]),
-        dbc.Row(className="mb-4", children=[
-            dbc.Col(md=6, className="mb-4", children=[
-                create_table_card('real-gdp-table', 'Real GDP', df_real_gdp.columns, df_real_gdp.to_dict('records'), page_size=5)
-            ]),
-            dbc.Col(md=6, className="mb-4", children=[
-                create_table_card('inflation-table', 'Inflation Rates', df_inflation.columns, df_inflation.to_dict('records'), page_size=5) if not df_inflation.empty else dbc.Card(
-                    dbc.CardBody([html.P("No inflation data available")]),
-                    className="shadow-sm mb-4"
-                )
             ]),
         ]),
         dbc.Row(className="mb-4", children=[
@@ -476,7 +432,7 @@ app.layout = html.Div(className="app-container", children=[
     ])
 ])
 
-# --- Callbacks ---
+# Callbacks - connect interactive components to graphs
 
 @app.callback(
     Output('nfem-graph', 'figure'),
@@ -488,10 +444,8 @@ def update_nfem_graph(_):
     
     df_plot = df_nfem.sort_values('Date')
     
-    # Create figure with filled area between highest and lowest rates
     fig = go.Figure()
     
-    # Add filled area
     fig.add_trace(go.Scatter(
         x=df_plot['Date'],
         y=df_plot['Highest Rate'],
@@ -510,7 +464,6 @@ def update_nfem_graph(_):
         showlegend=True
     ))
     
-    # Add NFEM Rate line
     fig.add_trace(go.Scatter(
         x=df_plot['Date'],
         y=df_plot['NFEM Rate'],
@@ -531,41 +484,50 @@ def update_nfem_graph(_):
 
 @app.callback(
     Output('exchange-graph', 'figure'),
-    Input('currency-dropdown', 'value'),
-    prevent_initial_call=True
+    Input('exchange-graph', 'id')
 )
-def update_exchange_graph(selected_currency):
-    if df_exchange.empty or selected_currency is None:
+def update_exchange_graph(_):
+    if df_exchange.empty:
         return go.Figure().add_annotation(text="No exchange rate data available")
     
-    df_filtered = df_exchange[df_exchange['Currency'] == selected_currency].sort_values('Date')
-    if df_filtered.empty:
-        return go.Figure().add_annotation(text=f"No data available for {selected_currency}")
+    df_plot = df_exchange.copy()
+    if 'Date' in df_plot.columns:
+        df_plot['Year'] = pd.to_datetime(df_plot['Date'], errors='coerce').dt.year
+        
+        df_grouped = df_plot.groupby(['Currency', 'Year']).agg({
+            'Central Rate': lambda x: to_numeric(x.iloc[0]) if len(x) > 0 else 0
+        }).reset_index()
+        
+        fig = go.Figure()
+        
+        for currency in df_grouped['Currency'].unique():
+            currency_data = df_grouped[df_grouped['Currency'] == currency].sort_values('Year')
+            fig.add_trace(go.Scatter(
+                x=currency_data['Year'],
+                y=currency_data['Central Rate'],
+                name=currency,
+                mode='lines+markers',
+                line=dict(width=2.5),
+                marker=dict(size=6)
+            ))
+        
+        fig.update_layout(
+            template=custom_template,
+            title=None,
+            xaxis_title='Year',
+            yaxis_title='Exchange Rate (₦)',
+            hovermode='x unified',
+            legend=dict(
+                orientation='v',
+                yanchor='top',
+                y=1,
+                xanchor='left',
+                x=1.02
+            )
+        )
+    else:
+        fig = go.Figure().add_annotation(text="Date information not available")
     
-    # Use grouped bar chart to show buying vs selling rates
-    fig = go.Figure()
-    
-    fig.add_trace(go.Bar(
-        x=df_filtered['Date'],
-        y=df_filtered['Buying Rate'],
-        name='Buying Rate',
-        marker_color='#2E8B57'
-    ))
-    
-    fig.add_trace(go.Bar(
-        x=df_filtered['Date'],
-        y=df_filtered['Selling Rate'],
-        name='Selling Rate',
-        marker_color='#90EE90'
-    ))
-    
-    fig.update_layout(
-        template=custom_template,
-        title=None,
-        yaxis_title='Rate (₦)',
-        barmode='group',
-        hovermode='x unified'
-    )
     return fig
 
 @app.callback(
@@ -576,10 +538,8 @@ def update_crude_oil_graph(_):
     if df_crude_oil.empty:
         return go.Figure().add_annotation(text="No crude oil price data available")
     
-    # Check if Date column exists, if not create index-based x-axis
     df_plot = df_crude_oil.copy()
     if 'Date' not in df_plot.columns:
-        # Use index as x-axis
         df_plot['Index'] = range(len(df_plot))
         x_col = 'Index'
         x_title = 'Data Point'
@@ -606,38 +566,6 @@ def update_crude_oil_graph(_):
     return fig
 
 @app.callback(
-    Output('financial-graph', 'figure'),
-    Input('financial-metric-dropdown', 'value'),
-    prevent_initial_call=True
-)
-def update_financial_graph(selected_metric):
-    if df_financial.empty or selected_metric is None:
-        return go.Figure().add_annotation(text="No financial data available")
-    
-    # Check if Date column exists, otherwise use Record number
-    x_col = 'Date' if 'Date' in df_financial.columns else 'Record'
-    x_title = 'Date' if x_col == 'Date' else 'Record Number'
-    
-    df_plot = df_financial.copy()
-    if x_col == 'Date':
-        df_plot = df_plot.sort_values('Date')
-    
-    fig = px.bar(
-        df_plot,
-        x=x_col,
-        y=selected_metric,
-        title=f'{selected_metric} Over Time'
-    )
-    fig.update_layout(
-        template=custom_template,
-        title=None,
-        xaxis_title=x_title,
-        yaxis_title="Amount (₦'m)",
-        hovermode='x unified'
-    )
-    return fig
-
-@app.callback(
     Output('gdp-graph', 'figure'),
     Input('gdp-graph', 'id')
 )
@@ -652,7 +580,6 @@ def update_gdp_graph(_):
         value_name='GDP (Billion ₦)'
     )
     
-    # Use area chart for better visualization
     fig = px.area(
         df_melted,
         x='Year',
@@ -669,61 +596,62 @@ def update_gdp_graph(_):
     return fig
 
 @app.callback(
-    Output('real-gdp-graph', 'figure'),
-    Input('real-gdp-graph', 'id')
+    Output('gdp-pie-chart', 'figure'),
+    Input('gdp-pie-chart', 'id')
 )
-def update_real_gdp_graph(_):
-    if df_real_gdp.empty:
-        return go.Figure().add_annotation(text="No real GDP data available")
+def update_gdp_pie_chart(_):
+    if df_gdp.empty:
+        return go.Figure().add_annotation(text="No nominal GDP data available")
     
-    # Check if sector columns exist
-    required_cols = ['Agriculture', 'Industry', 'Services']
-    available_cols = [col for col in required_cols if col in df_real_gdp.columns]
+    latest_year = df_gdp.iloc[0]
     
-    if not available_cols:
-        # No sector data available, show message
-        return go.Figure().add_annotation(
-            text="Real GDP sector data not available<br>Please check data source",
-            font=dict(size=14, color='#555')
-        )
+    sectors = ['Agriculture', 'Industry', 'Services']
+    values = []
     
-    df_melted = df_real_gdp.melt(
-        id_vars=['Year'],
-        value_vars=available_cols,
-        var_name='Sector',
-        value_name='GDP (Billion ₦)'
-    )
+    for sector in sectors:
+        if sector in df_gdp.columns:
+            value = to_numeric(latest_year[sector])
+            values.append(value)
+        else:
+            values.append(0)
     
-    fig = px.bar(
-        df_melted,
-        x='Year',
-        y='GDP (Billion ₦)',
-        color='Sector',
-        barmode='stack',
-        title='Real GDP by Sector (2010 Prices)'
-    )
+    fig = go.Figure(data=[go.Pie(
+        labels=sectors,
+        values=values,
+        hole=0.3,
+        marker=dict(colors=['#2E8B57', '#32CD32', '#90EE90']),
+        textinfo='label+percent',
+        textposition='auto',
+        hovertemplate='<b>%{label}</b><br>₦%{value:,.2f}B<br>%{percent}<extra></extra>'
+    )])
+    
     fig.update_layout(
         template=custom_template,
         title=None,
-        hovermode='x unified'
+        showlegend=True,
+        legend=dict(
+            orientation='h',
+            yanchor='bottom',
+            y=-0.2,
+            xanchor='center',
+            x=0.5
+        ),
+        annotations=[dict(text=f'{latest_year["Year"]}', x=0.5, y=0.5, font_size=20, showarrow=False)]
     )
     return fig
 
 @app.callback(
     Output('detailed-inflation-graph', 'figure'),
-    Input('inflation-metric-dropdown', 'value'),
-    prevent_initial_call=True
+    Input('inflation-metric-dropdown', 'value')
 )
 def update_inflation_graph(selected_metric):
     if df_inflation.empty or selected_metric is None:
         return go.Figure().add_annotation(text="No inflation data available")
     
-    # Ensure period is sorted properly
     df_plot = df_inflation.copy()
     if 'period' in df_plot.columns:
         df_plot = df_plot.sort_values('period')
     
-    # Use area chart with gradient for inflation data
     fig = px.area(
         df_plot,
         x='period',
@@ -746,19 +674,16 @@ def update_inflation_graph(selected_metric):
 
 @app.callback(
     Output('money-credit-graph', 'figure'),
-    Input('money-metric-dropdown', 'value'),
-    prevent_initial_call=True
+    Input('money-metric-dropdown', 'value')
 )
 def update_money_credit_graph(selected_metric):
     if df_money_credit.empty or selected_metric is None:
         return go.Figure().add_annotation(text="No money and credit data available")
     
-    # Ensure period is sorted properly
     df_plot = df_money_credit.copy()
     if 'period' in df_plot.columns:
         df_plot = df_plot.sort_values('period')
     
-    # Use bar chart with gradient for money & credit data
     fig = px.bar(
         df_plot,
         x='period',
@@ -778,7 +703,5 @@ def update_money_credit_graph(selected_metric):
     fig.update_traces(marker_line_width=0)
     return fig
 
-
-# --- Run the App ---
 if __name__ == '__main__':
     app.run(debug=True)
