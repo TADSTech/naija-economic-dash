@@ -75,4 +75,4 @@ The green color scheme is intentional. Nigerian currency and all that.
 
 ## License
 
-MIT
+[MIT](LICENSE)
