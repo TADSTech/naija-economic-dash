@@ -93,6 +93,7 @@ app = dash.Dash(
     ]
 )
 app.title = "Naija Economic Dashboard"
+server = app.server
 
 # Inline CSS for styling
 app.index_string = '''
@@ -704,4 +705,4 @@ def update_money_credit_graph(selected_metric):
     return fig
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
